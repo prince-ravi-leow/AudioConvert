@@ -45,7 +45,7 @@ c.convert("path/to/audio_files/")
 ```
 
 # Run GUI
-This wrapper comes with a GUI is build with [`streamlit`](https://github.com/streamlit/streamlit). 
+`AudioConvert` comes with a GUI built with [`streamlit`](https://github.com/streamlit/streamlit). 
 
 Run a local version of the app like so:
 ```
