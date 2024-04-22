@@ -11,9 +11,21 @@ $ pip install -r audio_convert/requirements.txt
 
 # Simple usage
 ## From terminal
-```
+```sh
+$ python3 audio_convert.py --help 
+usage: audio_convert.py [-h] input_directory output_codec
+
+Simple example: python3 audio_convert.py 'HOME - Odyssey (2014)/' 'mp3'
+
+positional arguments:
+  input_directory  Input directory
+  output_codec     Output codec
+
+options:
+  -h, --help       show this help message and exit
+
 $ python3 audio_convert.py "HOME - Resonance (2014)" "mp3"
-HOME - Odyssey (2014) AAC | 09 Resonance.m4a:  67%|██████████████████████           | 8/12 [00:21<00:11,  2.78s/it]
+HOME - Odyssey (2014) | 09 Resonance.m4a:  67%|██████████████████████           | 8/12 [00:21<00:11,  2.78s/it]
 ```
 ## Interactive session
 ```py
@@ -29,7 +41,7 @@ c.convert(to_convert)
 
 # Input path to directory containing files
 c = AudioConvert(output_codec='mp3', input_type="dir")
-c = convert("path/to/audio_files/")
+c.convert("path/to/audio_files/")
 ```
 
 # Run GUI
