@@ -52,4 +52,4 @@ Run a local version of the app like so:
 $ streamlit run audio_convert/st_audio_convert.py
 ```
 App preview: 
-![streamlit preview](./media/st_audio_convert_preview.png)
+![streamlit preview](./media/st_audio_convert_preview_zoom.png)
