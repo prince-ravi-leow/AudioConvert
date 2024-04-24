@@ -5,7 +5,7 @@ First and foremost, `FFmpeg` must be [installed](https://ffmpeg.org/download.htm
 
 Clone repo and install dependencies:
 ```sh
-$ git clone https://github.com/prince-ravi-leow/audio_convert
+$ git clone https://github.com/prince-ravi-leow/AudioConvert
 $ pip install -r audio_convert/requirements.txt
 ```
 
