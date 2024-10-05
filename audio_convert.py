@@ -6,7 +6,8 @@ from tqdm import tqdm
 
 codecExt = {
     'wave' : 'wav',
-    'alac' : 'm4a'
+    'alac' : 'm4a',
+    'aac' : 'm4a'
 }
 
 ext_lower = "mp3 wav m4a opus wma flac mp4 opus ogg aiff webm ape".split()
