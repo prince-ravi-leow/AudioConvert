@@ -59,7 +59,7 @@ class AudioConvert:
         pbar = tqdm(self.input_files)
         for f in pbar:
             pbar.set_description(f"{f.parent} | {f.name}")
-            ext = codecExt.get(f.suffix) if self.output_codec in codecExt.keys() else self.output_codec # Deal with codec not matching file extension
+            ext = codecExt.get(self.output_codec) if self.output_codec in codecExt.keys() else self.output_codec # Deal with codec not matching file extension
             output_filename = f.stem + "." + ext
             args = [
                 "-acodec",
