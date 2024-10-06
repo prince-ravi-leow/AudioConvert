@@ -2,6 +2,9 @@
 
 import subprocess
 from pathlib import Path
+import sys
+from argparse import ArgumentParser
+
 from tqdm import tqdm
 
 codecExt = {
@@ -71,23 +74,23 @@ class AudioConvert:
                 ffmpeg_base + [str(f)] + args + not_verbose + [str(self.output_dir / output_filename)]
                 )
 
-if __name__ == "__main__":
-    
-    import sys
-    from argparse import ArgumentParser
-    
+def parse_arguments():
     parser = ArgumentParser(description = "Simple example: python3 audio_convert.py 'HOME - Odyssey (2014)/' 'mp3'")
     
     parser.add_argument(dest="input_directory", type=str, help="Input directory")
     parser.add_argument(dest="output_codec", type=str, help="Output codec")
     
-    args = parser.parse_args()
+    return parser.parse_args()
+
+def main():   
+    args = parse_arguments()
     input_directory = args.input_directory
     output_codec = args.output_codec
     
-    if len(sys.argv) < 2:
-        parser.print_help()
-        sys.exit(1)
-
     c = AudioConvert(output_codec)
     c.convert(input_data=input_directory)
+    
+if __name__ == "__main__":    
+    main()    
+
+
