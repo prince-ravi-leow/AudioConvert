@@ -29,19 +29,10 @@ HOME - Odyssey (2014) | 09 Resonance.m4a:  67%|███████████
 ```
 ## Interactive session
 ```py
-import sys
-from pathlib import Path
-sys.path.append(audio_convert)
 from audio_convert import AudioConvert
-
-# Input list of files
-to_convert = list(Path("path/to/audio_files/").glob("*"))
-c = AudioConvert(output_codec='mp3', input_type="files")
-c.convert(to_convert)
-
-# Input path to directory containing files
-c = AudioConvert(output_codec='mp3', input_type="dir")
-c.convert("path/to/audio_files/")
+c = AudioConvert(output_codec="mp3")
+c.get_dir_files("/path/to/audio_files/")
+c.convert()
 ```
 
 # Run GUI

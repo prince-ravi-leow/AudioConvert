@@ -2,7 +2,6 @@
 
 import subprocess
 from pathlib import Path
-import sys
 from argparse import ArgumentParser
 
 from tqdm import tqdm
@@ -22,19 +21,22 @@ not_verbose = ["-hide_banner", "-loglevel", "error"]
 
 class AudioConvert:
     """
-    Provide:
-    - Input directory
-    - Output codec
+    Simple usage:
+    from audio_convert import AudioConvert
+    c = AudioConvert(output_codec="mp3")
+    c.get_dir_files("/path/to/audio_files/")
+    c.convert()
     """
-    def __init__(self, output_codec, input_type = "dir", output_dir=None):
+    # def __init__(self, output_codec, input_type = "dir", output_dir=None):
+    def __init__(self, output_codec, output_dir=None):
         self.output_codec = output_codec
-        self.input_type = input_type
+        # self.input_type = input_type
         self.output_dir = output_dir
 
     def get_dir_files(self, input_dir):
         if not Path(input_dir).is_dir():
             raise TypeError(f"{input_dir} not directory.")
-        self.input_dir = Path(input_dir) if not input_dir == "." else Path(".").cwd() # Deal "." as input directory
+        self.input_dir = Path(input_dir) if not input_dir == "." else Path().cwd() # Deal "." as input directory
         
         output_dir_name = self.input_dir.name.replace(" ", "_") + "_converted_" + f"{self.output_codec}"
         if not self.output_dir:
@@ -51,14 +53,11 @@ class AudioConvert:
                 raise TypeError("Please enter list of files.")
         self.input_files = input_files
         if not self.output_dir:
-            self.output_dir = Path(".").cwd()
+            self.output_dir = Path().cwd()
 
-    def convert(self, input_data):
-        if self.input_type == "dir":
-            self.get_dir_files(input_data)
-        if self.input_type == "files":
-            self.get_list_files(input_data)
-        
+    def convert(self, input_files=None):        
+        if input_files:
+            self.input_files = input_files
         pbar = tqdm(self.input_files)
         for f in pbar:
             pbar.set_description(f"{f.parent} | {f.name}")
@@ -80,17 +79,13 @@ def parse_arguments():
     parser.add_argument(dest="input_directory", type=str, help="Input directory")
     parser.add_argument(dest="output_codec", type=str, help="Output codec")
     
-    return parser.parse_args()
+    return vars(parser.parse_args())
 
 def main():   
     args = parse_arguments()
-    input_directory = args.input_directory
-    output_codec = args.output_codec
-    
-    c = AudioConvert(output_codec)
-    c.convert(input_data=input_directory)
+    c = AudioConvert(args["output_codec"])
+    c.get_dir_files(args["input_directory"])
+    c.convert()
     
 if __name__ == "__main__":    
     main()    
-
-
